@@ -63,6 +63,7 @@ class OtpBloc extends Bloc<OtpEvent, OtpState> {
             verifyOtpRequestModel: verifyOtpRequestModel);
         await SharedPrefHelper.instance
             .saveData('accessToken', userData.accessToken);
+        await SharedPrefHelper.instance.saveData('senderID', userData.id);
 
         emit(OtpVerifiedState());
       } on ErrorResponseModel catch (error) {

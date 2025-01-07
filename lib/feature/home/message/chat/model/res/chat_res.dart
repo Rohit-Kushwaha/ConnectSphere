@@ -1,35 +1,34 @@
 class ChatResponseModel {
+  final List<Messages>? messages;
+
   ChatResponseModel({
-    required this.messages,
+    this.messages,
   });
-  late final List<Messages> messages;
 
-  ChatResponseModel.fromJson(Map<String, dynamic> json) {
-    messages =
-        List.from(json['messages']).map((e) => Messages.fromJson(e)).toList();
-  }
+  ChatResponseModel.fromJson(Map<String, dynamic> json)
+      : messages = (json['messages'] as List?)
+            ?.map((dynamic e) => Messages.fromJson(e as Map<String, dynamic>))
+            .toList();
 
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['messages'] = messages.map((e) => e.toJson()).toList();
-    return _data;
-  }
+  Map<String, dynamic> toJson() =>
+      {'messages': messages?.map((e) => e.toJson()).toList()};
 }
 
 class Messages {
-  Messages({
-    required this.message,
-  });
-  late final String message;
+  final String? message;
+  final String? senderId;
+  final String? receiverId;
 
-  Messages.fromJson(Map<String, dynamic> json) {
-    message = json['message'];
-  }
+  Messages({this.message, this.receiverId, this.senderId});
 
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
+  Messages.fromJson(Map<String, dynamic> json)
+      : message = json['message'] as String?,
+        senderId = json['senderId'] as String?,
+        receiverId = json['receiverId'] as String?;
 
-    _data['message'] = message;
-    return _data;
-  }
+  Map<String, dynamic> toJson() => {
+        'message': message,
+        'senderId': senderId,
+        'receiverId': receiverId,
+      };
 }

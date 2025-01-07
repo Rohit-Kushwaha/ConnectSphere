@@ -18,15 +18,19 @@ class SearchResponseModel {
 class Users {
   Users({
     required this.name,
+    required this.id
   });
   late final String name;
+  late final String id;
   
   Users.fromJson(Map<String, dynamic> json){
     name = json['name'];
+    id = json['_id'];
   }
 
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};
+    data['_id'] = id;
     data['name'] = name;
     return data;
   }

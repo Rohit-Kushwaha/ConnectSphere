@@ -1,7 +1,11 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:career_sphere/common/response/error_response.dart';
+import 'package:career_sphere/feature/home/message/model/req/add_user_req.dart';
+import 'package:career_sphere/feature/home/message/model/req/chatted_req.dart';
 import 'package:career_sphere/feature/home/message/model/req/req.dart';
+import 'package:career_sphere/feature/home/message/model/res/add_user_response.dart';
+import 'package:career_sphere/feature/home/message/model/res/chatted_response.dart';
 import 'package:career_sphere/feature/home/message/model/res/res.dart';
 import 'package:career_sphere/feature/home/message/repo/message_repo.dart';
 import 'package:career_sphere/utils/deboucing.dart';
@@ -43,6 +47,39 @@ class MessageBloc extends Bloc<MessageEvent, MessageState> {
       });
       // Await the Completer to ensure the handler doesn't exit early
       await completer.future;
+    });
+
+    on<GetChattedListEvent>((event, emit) async {
+      try {
+        emit(GetChattedListSuccessLoading());
+
+        var chattedUserRequest = ChatteUserRequest(senderId: event.senderId);
+        final chatteUserList = await messageRepo.getAllChattedUser(
+            chattedUserRequest: chattedUserRequest);
+        emit(GetChattedListSuccessState(chatteUserResponse: chatteUserList));
+      } on ErrorResponseModel catch (e) {
+        emit(GetChattedListSuccessFailure(error: e.message));
+      } catch (e) {
+        emit(GetChattedListSuccessFailure(error: "An un expected error"));
+      }
+    });
+
+    on<SaveUserChattingEvent>((event, emit) async {
+      try {
+        emit(ChatSaveWaitState());
+
+        AddUserRequest addUserRequest = AddUserRequest(
+            senderId: event.senderID, receiverId: event.receiverID);
+
+        final saveChattedUser =
+            await messageRepo.sendAddedUser(addUserRequest: addUserRequest);
+
+        emit(ChatSaveState(saveChattedUser: saveChattedUser));
+      } on ErrorResponseModel catch (e) {
+        emit(ChatErrorState(error: e.message));
+      } catch (e) {
+        emit(ChatErrorState(error: "An unexpected error"));
+      }
     });
   }
 }

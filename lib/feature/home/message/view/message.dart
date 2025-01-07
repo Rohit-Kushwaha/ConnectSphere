@@ -1,12 +1,17 @@
+import 'package:career_sphere/data/local/shared/shared_prefs.dart';
 import 'package:career_sphere/feature/home/message/bloc/bloc/message_bloc.dart';
 import 'package:career_sphere/feature/home/message/chat/view/chat_screen.dart';
+import 'package:career_sphere/feature/home/message/model/res/chatted_response.dart';
 import 'package:career_sphere/feature/home/message/repo/message_repo.dart';
 import 'package:career_sphere/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MessageScreen extends StatefulWidget {
-  const MessageScreen({super.key});
+  const MessageScreen({
+    super.key,
+  });
 
   @override
   State<MessageScreen> createState() => _MessageScreenState();
@@ -20,8 +25,9 @@ class _MessageScreenState extends State<MessageScreen> {
     'Charlie',
     'David'
   ]; // Dummy data
-  final List<String> _chatUsers = []; // List of users in the chat
+  List<Username>? _chatUsers = []; // List of users in the chat
   List<String> _filteredUsers = [];
+  late String? senderID;
 
   void _onSearchChanged(String query) {
     if (query.isEmpty) {
@@ -37,19 +43,24 @@ class _MessageScreenState extends State<MessageScreen> {
     }
   }
 
-  void _addUserToChat(String user) {
-    if (!_chatUsers.contains(user)) {
-      setState(() {
-        _chatUsers.add(user);
-      });
-    }
-    _searchController.clear();
-    _filteredUsers.clear();
-  }
+  // void _addUserToChat(String user) {
+  //   if (!_chatUsers.contains(user)) {
+  //     setState(() {
+  //       _chatUsers.add(user);
+  //     });
+  //   }
+  //   _searchController.clear();
+  //   _filteredUsers.clear();
+  // }
 
   @override
   void initState() {
+    senderID = SharedPrefHelper.instance.getString("senderID");
+    debugPrint(senderID.toString());
+    debugPrint("senderID".toString());
+
     super.initState();
+
     _searchController.addListener(() {
       _onSearchChanged(_searchController.text);
     });
@@ -64,7 +75,8 @@ class _MessageScreenState extends State<MessageScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => MessageBloc(MessageRepoImpl()),
+      create: (context) => MessageBloc(MessageRepoImpl())
+        ..add(GetChattedListEvent(senderId: senderID.toString())),
       child: Scaffold(
         appBar: AppBar(
           title: Text("Chat"),
@@ -85,6 +97,7 @@ class _MessageScreenState extends State<MessageScreen> {
                     },
                     decoration: InputDecoration(
                       labelText: 'Search User',
+                      contentPadding: EdgeInsets.only(left: 10.w),
                       border: OutlineInputBorder(),
                       suffixIcon: Icon(Icons.search),
                     ),
@@ -105,12 +118,36 @@ class _MessageScreenState extends State<MessageScreen> {
                               var searchedUser =
                                   state.searchResponseModel.users[index];
                               return ListTile(
-                                title: Text(
-                                  searchedUser.name,
-                                  style: merienda14(context),
-                                ),
-                                onTap: () => _addUserToChat(searchedUser.name),
-                              );
+                                  title: Text(
+                                    searchedUser.name,
+                                    style: merienda14(context),
+                                  ),
+                                  onTap: () {
+                                    //!!
+                                    context
+                                        .read<MessageBloc>()
+                                        .add(SaveUserChattingEvent(
+                                          senderID: senderID.toString(),
+                                          receiverID:
+                                              searchedUser.id.toString(),
+                                        ));
+                                    debugPrint(
+                                        "${searchedUser.id}Searched User id");
+                                    // _addUserToChat(searchedUser.name),
+                                    if (!_chatUsers!.contains(Username(
+                                        name: searchedUser.toString()))) {
+                                      setState(() {
+                                        _chatUsers!.add(Username(
+                                          id: searchedUser.id,
+                                          name: searchedUser.name.toString(),
+                                        ));
+                                      });
+                                    }
+                                    _searchController.clear();
+                                    _filteredUsers.clear();
+
+                                    //!!!
+                                  });
                             }),
                       )
                     : state is SearchErrorState
@@ -119,32 +156,49 @@ class _MessageScreenState extends State<MessageScreen> {
               },
             ),
             Expanded(
-              child: Column(
-                children: [
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: _chatUsers.length,
-                      itemBuilder: (context, index) {
-                        return ListTile(
-                          title: Text(_chatUsers[index]),
-                          trailing: Icon(Icons.chat),
-                          onTap: () {
-                            // Navigate to chat with this user
-                            debugPrint(index.toString());
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ChatScreen(
-                                          senderName: "Rohit",
-                                          receiverName: "Mohit",
-                                        )));
-                          },
-                        );
-                      },
+              child: Builder(builder: (context) {
+                return Column(
+                  children: [
+                    Expanded(
+                      child: BlocConsumer<MessageBloc, MessageState>(
+                        listener: (context, state) {
+                          if (state is GetChattedListSuccessState) {
+                            setState(() {
+                              _chatUsers = state.chatteUserResponse.username;
+                            });
+                          }
+                        },
+                        builder: (context, state) {
+                          return ListView.builder(
+                            itemCount: _chatUsers!.length,
+                            itemBuilder: (context, index) {
+                              return ListTile(
+                                title: Text(_chatUsers![index].name.toString()),
+                                trailing: Icon(Icons.chat),
+                                onTap: () {
+                                  // Navigate to chat with this user
+                                  debugPrint(index.toString());
+                                  debugPrint("${_chatUsers![index].id} ID");
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => ChatScreen(
+                                        senderID: senderID.toString(),
+                                        receiverID:
+                                            _chatUsers![index].id.toString(),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                          );
+                        },
+                      ),
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                );
+              }),
             ),
           ],
         ),

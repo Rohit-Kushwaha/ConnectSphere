@@ -1,7 +1,11 @@
 import 'package:career_sphere/common/response/error_response.dart';
 import 'package:career_sphere/data/remote/network/base_api.dart';
 import 'package:career_sphere/data/remote/network/network_api.dart';
+import 'package:career_sphere/feature/home/message/model/req/add_user_req.dart';
+import 'package:career_sphere/feature/home/message/model/req/chatted_req.dart';
 import 'package:career_sphere/feature/home/message/model/req/req.dart';
+import 'package:career_sphere/feature/home/message/model/res/add_user_response.dart';
+import 'package:career_sphere/feature/home/message/model/res/chatted_response.dart';
 import 'package:career_sphere/feature/home/message/model/res/res.dart';
 import 'package:career_sphere/utils/strings.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +13,12 @@ import 'package:flutter/material.dart';
 abstract class MessageRepo {
   Future<SearchResponseModel> searchUser(
       {required SearchRequestModel searchRequestModel});
+
+  Future<ChatteUserResponse> getAllChattedUser(
+      {required ChatteUserRequest chattedUserRequest});
+
+  Future<AddUserResponse> sendAddedUser(
+      {required AddUserRequest addUserRequest});
 }
 
 class MessageRepoImpl extends MessageRepo {
@@ -30,5 +40,21 @@ class MessageRepoImpl extends MessageRepo {
       debugPrint("Error in searching user $e");
       rethrow;
     }
+  }
+
+  @override
+  Future<ChatteUserResponse> getAllChattedUser(
+      {required ChatteUserRequest chattedUserRequest}) async {
+    var json = await apiService.postApiResponse(
+        ApiString.chattedUser, chattedUserRequest.toJson());
+    return ChatteUserResponse.fromJson(json);
+  }
+
+  @override
+  Future<AddUserResponse> sendAddedUser(
+      {required AddUserRequest addUserRequest}) async {
+    var json = await apiService.postApiResponse(
+        ApiString.saveUserChat, addUserRequest.toJson());
+    return AddUserResponse.fromJson(json);
   }
 }

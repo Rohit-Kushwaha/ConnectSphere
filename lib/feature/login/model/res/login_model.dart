@@ -3,16 +3,19 @@ abstract class BaseLoginResponse {}
 
 class LoginModel implements BaseLoginResponse {
   String? accessToken;
+  String? id;
 
-  LoginModel({this.accessToken});
+  LoginModel({this.accessToken, this.id});
 
   LoginModel.fromJson(Map<String, dynamic> json) {
     accessToken = json['accessToken'] as String?;
+    id = json['id'] as String?;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> json = <String, dynamic>{};
     json['accessToken'] = accessToken;
+    json['id'] = id;
     return json;
   }
 }

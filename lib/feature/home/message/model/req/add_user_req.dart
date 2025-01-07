@@ -1,13 +1,13 @@
-class ChatRequestModel {
+class AddUserRequest {
   final String? senderId;
   final String? receiverId;
 
-  ChatRequestModel({
+  AddUserRequest({
     this.senderId,
     this.receiverId,
   });
 
-  ChatRequestModel.fromJson(Map<String, dynamic> json)
+  AddUserRequest.fromJson(Map<String, dynamic> json)
     : senderId = json['senderId'] as String?,
       receiverId = json['receiverId'] as String?;
 

@@ -8,6 +8,8 @@ class ApiString {
   static const searchUser = "$baseUrl/api/userSearch";
   static const getMessage = "$baseUrl/api/getMessage";
   static const logout = "$baseUrl/user/logout";
+  static const chattedUser = "$baseUrl/api/chattedUser";
+  static const saveUserChat = "$baseUrl/api/saveUser";
 
 }
 

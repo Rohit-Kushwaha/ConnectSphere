@@ -1,7 +1,10 @@
 // Define routes
+import 'package:career_sphere/data/local/shared/shared_prefs.dart';
 import 'package:career_sphere/feature/bottom_bar/view/bottom_bar.dart';
 import 'package:career_sphere/feature/home/blog/view/places.dart';
 import 'package:career_sphere/feature/home/items/view/items.dart';
+import 'package:career_sphere/feature/home/message/bloc/bloc/message_bloc.dart';
+import 'package:career_sphere/feature/home/message/repo/message_repo.dart';
 import 'package:career_sphere/feature/home/message/view/message.dart';
 import 'package:career_sphere/feature/home/places/view/places.dart';
 import 'package:career_sphere/feature/home/profile/view/profile.dart';
@@ -19,7 +22,7 @@ import 'package:go_router/go_router.dart';
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 final GoRouter router = GoRouter(
-  navigatorKey: navigatorKey, 
+  navigatorKey: navigatorKey,
   initialLocation: '/',
   routes: [
     GoRoute(
@@ -65,7 +68,9 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
       path: '/message',
-      builder: (context, state) => MessageScreen(),
+      builder: (context, state) {
+        return MessageScreen();
+      },
     ),
     GoRoute(
       path: '/items',

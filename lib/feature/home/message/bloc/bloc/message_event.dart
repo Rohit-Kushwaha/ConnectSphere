@@ -13,3 +13,13 @@ class SearchUserEvent extends MessageEvent {
   const SearchUserEvent({required this.name});
 }
 
+class GetChattedListEvent extends MessageEvent {
+  final String senderId;
+  const GetChattedListEvent({required this.senderId});
+}
+
+class SaveUserChattingEvent extends MessageEvent {
+  final String senderID, receiverID;
+  const SaveUserChattingEvent(
+      {required this.senderID, required this.receiverID});
+}

@@ -43,6 +43,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           await SharedPrefHelper.instance
               .saveData('accessToken', userData.accessToken);
 
+          await SharedPrefHelper.instance.saveData('senderID', userData.id);
+
           return emit(UserLoggedInState());
         } else if (userData is VerifiedFalseResponseModel) {
           return emit(UserNotVerifiedState());
