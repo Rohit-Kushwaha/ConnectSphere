@@ -1,8 +1,8 @@
 import 'package:career_sphere/data/local/shared/shared_prefs.dart';
-import 'package:career_sphere/feature/home/message/bloc/bloc/message_bloc.dart';
+import 'package:career_sphere/feature/home/message/msg/bloc/message_bloc.dart';
 import 'package:career_sphere/feature/home/message/chat/view/chat_screen.dart';
-import 'package:career_sphere/feature/home/message/model/res/chatted_response.dart';
-import 'package:career_sphere/feature/home/message/repo/message_repo.dart';
+import 'package:career_sphere/feature/home/message/msg/model/res/chatted_response.dart';
+import 'package:career_sphere/feature/home/message/msg/repo/message_repo.dart';
 import 'package:career_sphere/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -43,22 +43,9 @@ class _MessageScreenState extends State<MessageScreen> {
     }
   }
 
-  // void _addUserToChat(String user) {
-  //   if (!_chatUsers.contains(user)) {
-  //     setState(() {
-  //       _chatUsers.add(user);
-  //     });
-  //   }
-  //   _searchController.clear();
-  //   _filteredUsers.clear();
-  // }
-
   @override
   void initState() {
     senderID = SharedPrefHelper.instance.getString("senderID");
-    debugPrint(senderID.toString());
-    debugPrint("senderID".toString());
-
     super.initState();
 
     _searchController.addListener(() {

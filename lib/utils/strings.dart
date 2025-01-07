@@ -10,6 +10,7 @@ class ApiString {
   static const logout = "$baseUrl/user/logout";
   static const chattedUser = "$baseUrl/api/chattedUser";
   static const saveUserChat = "$baseUrl/api/saveUser";
+  static const getItems = "$baseUrl/api/items";
 
 }
 

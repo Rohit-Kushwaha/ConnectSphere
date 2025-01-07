@@ -35,7 +35,7 @@ class NetworkApiService extends BaseApiService {
           // String? accessToken = prefs.getString("accessToken");
           String? accessToken =
               SharedPrefHelper.instance.getString('accessToken');
-          debugPrint("AccessToken in Interceptor: $accessToken");
+          // debugPrint("AccessToken in Interceptor: $accessToken");
           // print('Request: ${options.method} ${options.uri}');
           if (accessToken != null && accessToken.isNotEmpty) {
             options.headers['Authorization'] = accessToken;
@@ -103,16 +103,14 @@ class NetworkApiService extends BaseApiService {
   }
 
   @override
-  Future<dynamic> getWithHeadersAndParams(
+  Future<dynamic> getWithParams(
     String url, {
     Map<String, dynamic>? queryParameters,
-    Map<String, dynamic>? headers,
   }) async {
     try {
       Response response = await dio.get(
         url,
         queryParameters: queryParameters,
-        options: Options(headers: headers),
       );
       return response.data;
     } on DioException catch (e) {
@@ -126,7 +124,7 @@ class NetworkApiService extends BaseApiService {
     dynamic responseJson;
     try {
       Response response = await dio.get(url);
-      debugPrint(response.toString());
+      // debugPrint(response.toString());
       responseJson = returnResponse(response);
     } on DioException catch (e) {
       handleDioError(e);

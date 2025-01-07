@@ -1,12 +1,12 @@
 import 'package:career_sphere/common/response/error_response.dart';
 import 'package:career_sphere/data/remote/network/base_api.dart';
 import 'package:career_sphere/data/remote/network/network_api.dart';
-import 'package:career_sphere/feature/home/message/model/req/add_user_req.dart';
-import 'package:career_sphere/feature/home/message/model/req/chatted_req.dart';
-import 'package:career_sphere/feature/home/message/model/req/req.dart';
-import 'package:career_sphere/feature/home/message/model/res/add_user_response.dart';
-import 'package:career_sphere/feature/home/message/model/res/chatted_response.dart';
-import 'package:career_sphere/feature/home/message/model/res/res.dart';
+import 'package:career_sphere/feature/home/message/msg/model/req/add_user_req.dart';
+import 'package:career_sphere/feature/home/message/msg/model/req/chatted_req.dart';
+import 'package:career_sphere/feature/home/message/msg/model/req/req.dart';
+import 'package:career_sphere/feature/home/message/msg/model/res/add_user_response.dart';
+import 'package:career_sphere/feature/home/message/msg/model/res/chatted_response.dart';
+import 'package:career_sphere/feature/home/message/msg/model/res/res.dart';
 import 'package:career_sphere/utils/strings.dart';
 import 'package:flutter/material.dart';
 

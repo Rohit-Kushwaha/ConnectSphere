@@ -4,7 +4,7 @@ import 'package:career_sphere/feature/bottom_bar/menubloc/bloc/menu_bloc_bloc.da
 import 'package:career_sphere/feature/bottom_bar/view/side_menu.dart';
 import 'package:career_sphere/feature/home/blog/view/places.dart';
 import 'package:career_sphere/feature/home/items/view/items.dart';
-import 'package:career_sphere/feature/home/message/view/message.dart';
+import 'package:career_sphere/feature/home/message/msg/view/message.dart';
 import 'package:career_sphere/feature/home/places/view/places.dart';
 import 'package:career_sphere/feature/home/profile/view/profile.dart';
 import 'package:career_sphere/utils/menu_app_controller.dart';
