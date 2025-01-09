@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 
 class RetryInterceptor extends Interceptor {
   final Dio dio;
@@ -14,7 +15,7 @@ class RetryInterceptor extends Interceptor {
 
     if (_shouldRetry(err) &&
         err.requestOptions.extra['retries'] < maxRetries) {
-      print("Retrying request...");
+      debugPrint("Retrying request...");
       err.requestOptions.extra['retries'] += 1;
 
       try {

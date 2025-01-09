@@ -1,5 +1,8 @@
 plugins {
     id "com.android.application"
+    // START: FlutterFire Configuration
+    id 'com.google.gms.google-services'
+    // END: FlutterFire Configuration
     id "kotlin-android"
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id "dev.flutter.flutter-gradle-plugin"
@@ -13,6 +16,8 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+        // Enable Java 8 desugaring
+        coreLibraryDesugaringEnabled true
     }
 
     kotlinOptions {
@@ -21,6 +26,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
+        multiDexEnabled true // optional if you have more than 64K methods
         applicationId = "com.example.career_sphere"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
@@ -37,10 +43,18 @@ android {
             signingConfig = signingConfigs.debug
         }
     }
+
+    dependencies {
+        // Add this dependency for desugaring
+        coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
+
+        // Add Firebase messaging dependency
+        // implementation 'com.google.firebase:firebase-messaging:23.0.0'  // Make sure to use the latest version
+    }
 }
 
 flutter {
     source = "../.."
 }
 
-
+// apply plugin: 'com.google.gms.google-services'  // Add this line for notification

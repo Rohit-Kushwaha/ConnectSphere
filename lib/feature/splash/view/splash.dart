@@ -1,4 +1,3 @@
-import 'package:career_sphere/data/local/shared/shared_prefs.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';

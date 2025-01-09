@@ -19,7 +19,7 @@ class RegisterRepoImpl extends RegisterRepo {
   Future<RegisterModel> registerUser({
     required RegisterRequestModel requestModel,
   }) async {
-    debugPrint(requestModel.toJson().toString() + "Json Data");
+    debugPrint("${requestModel.toJson()}Json Data");
 
     try {
       // Ensure the data structure matches your API expectations

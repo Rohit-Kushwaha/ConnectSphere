@@ -3,7 +3,6 @@ import 'package:career_sphere/data/remote/network/base_api.dart';
 import 'package:career_sphere/data/remote/network/network_api.dart';
 import 'package:career_sphere/feature/login/model/req/req.dart';
 import 'package:career_sphere/feature/login/model/res/login_model.dart';
-import 'package:career_sphere/utils/strings.dart';
 import 'package:flutter/material.dart';
 
 abstract class LoginRepo {

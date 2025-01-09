@@ -8,8 +8,18 @@ import 'package:career_sphere/feature/settings/language/language_cubit.dart';
 import 'package:career_sphere/feature/settings/theme/theme_cubit.dart';
 import 'package:career_sphere/utils/routes.dart';
 
-class ConnectSphere extends StatelessWidget {
+class ConnectSphere extends StatefulWidget {
   const ConnectSphere({super.key});
+
+  @override
+  State<ConnectSphere> createState() => _ConnectSphereState();
+}
+
+class _ConnectSphereState extends State<ConnectSphere> {
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

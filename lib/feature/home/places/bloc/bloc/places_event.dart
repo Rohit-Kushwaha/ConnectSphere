@@ -15,6 +15,6 @@ class FetchPlacesEvent extends PlacesEvent {
 }
 
 class ToggleFavoriteEvent extends PlacesEvent {
-  final Cart cart; // Unique identifier for the place
+  final Cart cart; // Unique identifier for the cart
   const ToggleFavoriteEvent({required this.cart});
 }

@@ -1,10 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:career_sphere/data/local/shared/secure_shared_prefs.dart';
 import 'package:career_sphere/data/local/shared/shared_prefs.dart';
 import 'package:career_sphere/utils/theme.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 part 'theme_state.dart';
 

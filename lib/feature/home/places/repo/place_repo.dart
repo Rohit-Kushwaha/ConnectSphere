@@ -15,7 +15,7 @@ class PlacesRepoImpl extends PlacesRepo {
   @override
   Future<PlaceResponseModel> getPlaces({required int page}) async {
     try {
-      print("APi hit");
+      debugPrint("APi hit");
       var json = await apiServices.getApiResponse(
           "https://ecommerce-lv31.onrender.com/api/places");
       return PlaceResponseModel.fromJson(json);

@@ -1,10 +1,13 @@
+import 'package:career_sphere/data/local/hive/model/wishlist_model.dart';
 import 'package:career_sphere/data/remote/network/network_api.dart';
 import 'package:career_sphere/feature/home/places/bloc/bloc/places_bloc.dart';
 import 'package:career_sphere/feature/home/places/repo/place_repo.dart';
+import 'package:career_sphere/feature/home/places/view/wishlist_screen.dart';
 import 'package:career_sphere/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class PlacesScreen extends StatefulWidget {
   const PlacesScreen({super.key});
@@ -14,16 +17,6 @@ class PlacesScreen extends StatefulWidget {
 }
 
 class _PlacesScreenState extends State<PlacesScreen> {
-  // List<Cart> arr = [];
-  // late List<bool> isLiked;
-
-  @override
-  void initState() {
-    super.initState();
-    // Initialize `isLiked` with false values. Updated dynamically after API fetch.
-    // isLiked = [];
-  }
-
   @override
   void dispose() {
     NetworkApiService().cancelRequest();
@@ -41,6 +34,23 @@ class _PlacesScreenState extends State<PlacesScreen> {
             'Places',
             style: merienda24(context),
           ),
+          actions: [
+            Padding(
+              padding: EdgeInsets.only(right: 20.w),
+              child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => WishlistScreen(
+                          cartBox: Hive.box<WishlistModel>('wishlist'),
+                        ),
+                      ),
+                    );
+                  },
+                  child: Icon(Icons.favorite_border_outlined)),
+            )
+          ],
         ),
         body: Padding(
           padding: EdgeInsets.all(16.r),
@@ -54,27 +64,17 @@ class _PlacesScreenState extends State<PlacesScreen> {
             },
             builder: (context, state) {
               if (state is PlaceLoadedState) {
-                // Initialize `isLiked` when places are loaded
-                // if (isLiked.isEmpty) {
-                //   isLiked = List<bool>.generate(
-                //       state.place.places.length, (index) => false);
-                // }
-                
-
                 return ListView.separated(
                   itemCount: state.place.places.length,
                   itemBuilder: (context, index) {
                     var place = state.place.places[index];
-                    //  final isFavorite =
-                    //   state.favorites.contains(place.id); 
 
-                      // Check if the place is in favorites
-    bool isFavorite = state.favorites.contains(Cart(
-      id: place.id,
-      title: place.name,
-      location: place.location,
-    ));
-                    
+                    // Check if the place is in favorites
+                    bool isFavorite = state.favorites.contains(Cart(
+                      id: place.id,
+                      title: place.name,
+                      location: place.location,
+                    ));
 
                     return Container(
                       height: 130.h,
@@ -142,45 +142,22 @@ class _PlacesScreenState extends State<PlacesScreen> {
                                     borderRadius: BorderRadius.circular(10.r),
                                   ),
                                   child: IconButton(
-                                    
                                     onPressed: () {
-                                     // Check favorite status
-                                      // setState(() {
-                                        // if (isLiked[index]) {
-                                        //   // Remove from arr if already liked
-                                        //   arr.removeWhere((item) =>
-                                        //       item.title == place.name &&
-                                        //       item.location == place.location);
-                                        // } else {
-                                        //   // Add to arr if not liked
-                                        //   arr.add(Cart(
-                                        //       title: place.name,
-                                        //       location: place.location));
-                                        // }
-                                        // Toggle the like state
-                                        // isLiked[index] = !isLiked[index];
-                                      // });
-                            //           context
-                            // .read<PlacesBloc>()
-                            // .add(ToggleFavoriteEvent(placeId: place.id));
-
-                             context
-                            .read<PlacesBloc>()
-                            .add(ToggleFavoriteEvent(cart: 
-                              Cart(id : place.id,title: place.name, location: place.location)
-                            ));
-                                      // debugPrint('Updated arr: $arr');
+                                      context.read<PlacesBloc>().add(
+                                            ToggleFavoriteEvent(
+                                              cart: Cart(
+                                                  id: place.id,
+                                                  title: place.name,
+                                                  location: place.location),
+                                            ),
+                                          );
                                     },
                                     icon: Icon(
-                                      isFavorite ? Icons.favorite : Icons.favorite_border,
-                        color: isFavorite ? Colors.red : Colors.grey,
-
-                                      // isLiked[index]
-                                      //     ? Icons.favorite
-                                      //     : Icons.favorite_border,
-                                      // color: isLiked[index]
-                                      //     ? Colors.red
-                                      //     : Colors.grey,
+                                      isFavorite
+                                          ? Icons.favorite
+                                          : Icons.favorite_border,
+                                      color:
+                                          isFavorite ? Colors.red : Colors.grey,
                                     ),
                                   ),
                                 ),
@@ -209,17 +186,19 @@ class _PlacesScreenState extends State<PlacesScreen> {
 }
 
 class Cart {
-  var id;
+  final String id;
   final String title;
   final String location;
 
-  Cart({required this.id,required this.title, required this.location});
-
+  Cart({required this.id, required this.title, required this.location});
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-    return other is Cart && other.id == id && other.title == title && other.location == location;
+    return other is Cart &&
+        other.id == id &&
+        other.title == title &&
+        other.location == location;
   }
 
   @override

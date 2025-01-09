@@ -1,6 +1,5 @@
 import 'package:career_sphere/feature/home/items/bloc/bloc/item_bloc.dart';
 import 'package:career_sphere/feature/home/items/repo/items_repo.dart';
-import 'package:career_sphere/utils/colors.dart';
 import 'package:career_sphere/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

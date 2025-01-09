@@ -1,0 +1,179 @@
+{
+  "project_info": {
+    "project_number": "747989124796",
+    "firebase_url": "https://liveprojects-2111d-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "liveprojects-2111d",
+    "storage_bucket": "liveprojects-2111d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:747989124796:android:aa6ef364d75ceab7bf72b9",
+        "android_client_info": {
+          "package_name": "com.example.auth_bloc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "747989124796-5c37i58nffgqomrak4c44ap78295pdbt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.auth_bloc",
+            "certificate_hash": "045c459b564539469ab555cc4313a1a3997e4e42"
+          }
+        },
+        {
+          "client_id": "747989124796-c5lqaoh4an07rnshgcop34s3j2oaakj1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAq1CLAdruvdJzcDPX3o46dWcNIhtSs5Hk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "747989124796-c5lqaoh4an07rnshgcop34s3j2oaakj1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "747989124796-ajhoplhi0qnb6mkd9kb9lbst2he3bi4l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.travelapp.trektrip"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:747989124796:android:d28f0eb6c55db14fbf72b9",
+        "android_client_info": {
+          "package_name": "com.example.avmeds"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "747989124796-tppg637q446e95ksep9rqbf1jec53cbg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.avmeds",
+            "certificate_hash": "045c459b564539469ab555cc4313a1a3997e4e42"
+          }
+        },
+        {
+          "client_id": "747989124796-c5lqaoh4an07rnshgcop34s3j2oaakj1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAq1CLAdruvdJzcDPX3o46dWcNIhtSs5Hk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "747989124796-c5lqaoh4an07rnshgcop34s3j2oaakj1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "747989124796-ajhoplhi0qnb6mkd9kb9lbst2he3bi4l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.travelapp.trektrip"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:747989124796:android:ae5f20b10f613dd9bf72b9",
+        "android_client_info": {
+          "package_name": "com.example.career_sphere"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "747989124796-c5lqaoh4an07rnshgcop34s3j2oaakj1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAq1CLAdruvdJzcDPX3o46dWcNIhtSs5Hk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "747989124796-c5lqaoh4an07rnshgcop34s3j2oaakj1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "747989124796-ajhoplhi0qnb6mkd9kb9lbst2he3bi4l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.travelapp.trektrip"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:747989124796:android:444c1be727cc5cd2bf72b9",
+        "android_client_info": {
+          "package_name": "com.travel.trektrip"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "747989124796-k5bqa6npkjp9grji0q3e964detr8eq64.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.travel.trektrip",
+            "certificate_hash": "045c459b564539469ab555cc4313a1a3997e4e42"
+          }
+        },
+        {
+          "client_id": "747989124796-c5lqaoh4an07rnshgcop34s3j2oaakj1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAq1CLAdruvdJzcDPX3o46dWcNIhtSs5Hk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "747989124796-c5lqaoh4an07rnshgcop34s3j2oaakj1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "747989124796-ajhoplhi0qnb6mkd9kb9lbst2he3bi4l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.travelapp.trektrip"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

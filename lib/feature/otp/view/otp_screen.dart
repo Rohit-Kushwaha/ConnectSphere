@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:career_sphere/feature/otp/bloc/bloc/otp_bloc.dart';
-import 'package:career_sphere/feature/otp/repo/otp_repo.dart';
 import 'package:career_sphere/utils/colors.dart';
 import 'package:career_sphere/utils/styles.dart';
 import 'package:flutter/material.dart';

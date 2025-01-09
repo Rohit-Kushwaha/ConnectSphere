@@ -1,10 +1,7 @@
 // Define routes
-import 'package:career_sphere/data/local/shared/shared_prefs.dart';
 import 'package:career_sphere/feature/bottom_bar/view/bottom_bar.dart';
 import 'package:career_sphere/feature/home/blog/view/places.dart';
 import 'package:career_sphere/feature/home/items/view/items.dart';
-import 'package:career_sphere/feature/home/message/msg/bloc/message_bloc.dart';
-import 'package:career_sphere/feature/home/message/msg/repo/message_repo.dart';
 import 'package:career_sphere/feature/home/message/msg/view/message.dart';
 import 'package:career_sphere/feature/home/places/view/places.dart';
 import 'package:career_sphere/feature/home/profile/view/profile.dart';

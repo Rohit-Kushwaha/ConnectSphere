@@ -6,7 +6,6 @@ import 'package:career_sphere/feature/otp/model/req/otp_verify_req.dart';
 import 'package:career_sphere/feature/otp/model/res/otp_verify_res.dart';
 import 'package:career_sphere/feature/otp/repo/otp_repo.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 
 part 'otp_event.dart';
 part 'otp_state.dart';

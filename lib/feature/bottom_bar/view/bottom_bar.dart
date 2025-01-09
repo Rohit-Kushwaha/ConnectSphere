@@ -1,6 +1,5 @@
 import 'package:app_settings/app_settings.dart';
 import 'package:career_sphere/feature/bottom_bar/bloc/bloc/bottom_bar_bloc.dart';
-import 'package:career_sphere/feature/bottom_bar/menubloc/bloc/menu_bloc_bloc.dart';
 import 'package:career_sphere/feature/bottom_bar/view/side_menu.dart';
 import 'package:career_sphere/feature/home/blog/view/places.dart';
 import 'package:career_sphere/feature/home/items/view/items.dart';

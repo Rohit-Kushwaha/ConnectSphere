@@ -9,8 +9,8 @@ class SearchRequestModel {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['name'] = name;
-    return _data;
+    final data = <String, dynamic>{};
+    data['name'] = name;
+    return data;
   }
 }
