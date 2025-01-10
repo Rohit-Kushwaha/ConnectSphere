@@ -63,7 +63,7 @@ Future<void> _setupFirebaseMessaging() async {
   final FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
 
   // Request permissions for iOS devices
-  // await _requestNotificationPermissions(firebaseMessaging);
+  await _requestNotificationPermissions(firebaseMessaging);
 
   // Request Android-specific permissions
   await _requestNotificationPermissionForAndroid(firebaseMessaging);

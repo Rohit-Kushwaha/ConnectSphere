@@ -63,8 +63,11 @@ class ProfileScreen extends StatelessWidget {
                                 position:
                                     const RelativeRect.fromLTRB(100, 100, 0, 0),
                                 items: [
-                                  const PopupMenuItem(
+                                   PopupMenuItem(
                                     value: 'profile',
+                                    onTap: (){
+                                       context.push('/post');
+                                    },
                                     child: ListTile(
                                       leading: Icon(Icons.person),
                                       title: Text('Profile'),

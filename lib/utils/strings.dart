@@ -11,6 +11,8 @@ class ApiString {
   static const chattedUser = "$baseUrl/api/chattedUser";
   static const saveUserChat = "$baseUrl/api/saveUser";
   static const getItems = "$baseUrl/api/items";
+  static const getBlog = "$baseUrl/api/getPost";
+
 
 }
 

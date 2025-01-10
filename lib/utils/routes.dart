@@ -4,7 +4,8 @@ import 'package:career_sphere/feature/home/blog/view/places.dart';
 import 'package:career_sphere/feature/home/items/view/items.dart';
 import 'package:career_sphere/feature/home/message/msg/view/message.dart';
 import 'package:career_sphere/feature/home/places/view/places.dart';
-import 'package:career_sphere/feature/home/profile/view/profile.dart';
+import 'package:career_sphere/feature/home/profile/post/view/post_screen.dart';
+import 'package:career_sphere/feature/home/profile/settings/view/profile.dart';
 import 'package:career_sphere/feature/login/view/login_screen.dart';
 import 'package:career_sphere/feature/otp/bloc/bloc/otp_bloc.dart';
 import 'package:career_sphere/feature/otp/repo/otp_repo.dart';
@@ -39,6 +40,7 @@ final GoRouter router = GoRouter(
       builder: (context, state) => SplashScreen(),
     ),
     GoRoute(path: '/home', builder: (context, state) => BottomBar()),
+    GoRoute(path: '/post', builder: (context, state) => PostScreen()),
     GoRoute(
       path: '/login',
       builder: (context, state) => LoginScreen(),

@@ -1,4 +1,4 @@
-import 'dart:async';
+// import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:career_sphere/common/response/error_response.dart';
 import 'package:career_sphere/feature/home/message/msg/model/req/add_user_req.dart';
@@ -8,24 +8,30 @@ import 'package:career_sphere/feature/home/message/msg/model/res/add_user_respon
 import 'package:career_sphere/feature/home/message/msg/model/res/chatted_response.dart';
 import 'package:career_sphere/feature/home/message/msg/model/res/res.dart';
 import 'package:career_sphere/feature/home/message/msg/repo/message_repo.dart';
-import 'package:career_sphere/utils/deboucing.dart';
+// import 'package:career_sphere/utils/deboucing.dart';
 import 'package:equatable/equatable.dart';
+import 'package:rxdart/rxdart.dart';
 
 part 'message_event.dart';
 part 'message_state.dart';
 
 class MessageBloc extends Bloc<MessageEvent, MessageState> {
-  final _debouncer = Debouncer(second: 1);
+  // final _debouncer = Debouncer(second: 1);
+  EventTransformer<T> debounce<T>(Duration duraiton) {
+    return (events, mapper) => events.debounceTime(duraiton).flatMap(mapper);
+  }
+
   final MessageRepo messageRepo;
   MessageBloc(this.messageRepo) : super(MessageInitial()) {
     on<MessageEvent>((event, emit) {});
 
 // Debounce the search
 
-    on<SearchUserEvent>((event, emit) async {
-      // Use a Completer to handle async operations in the debouncer
-      final completer = Completer<void>();
-      _debouncer.run(() async {
+    on<SearchUserEvent>(
+      (event, emit) async {
+        // Use a Completer to handle async operations in the debouncer
+        // final completer = Completer<void>();
+        // _debouncer.run(() async {
         emit(SearchUserWaitState());
 
         // Check if the search query has at least 3 characters
@@ -44,10 +50,12 @@ class MessageBloc extends Bloc<MessageEvent, MessageState> {
         } catch (e) {
           emit(SearchErrorState(msg: "An unexpected errror"));
         }
-      });
-      // Await the Completer to ensure the handler doesn't exit early
-      await completer.future;
-    });
+        // });
+        // Await the Completer to ensure the handler doesn't exit early
+        // await completer.future;
+      },
+      transformer: debounce(const Duration(milliseconds: 300)),
+    );
 
     on<GetChattedListEvent>((event, emit) async {
       try {

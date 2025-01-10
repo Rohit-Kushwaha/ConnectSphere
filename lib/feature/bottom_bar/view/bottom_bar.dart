@@ -5,7 +5,7 @@ import 'package:career_sphere/feature/home/blog/view/places.dart';
 import 'package:career_sphere/feature/home/items/view/items.dart';
 import 'package:career_sphere/feature/home/message/msg/view/message.dart';
 import 'package:career_sphere/feature/home/places/view/places.dart';
-import 'package:career_sphere/feature/home/profile/view/profile.dart';
+import 'package:career_sphere/feature/home/profile/settings/view/profile.dart';
 import 'package:career_sphere/utils/menu_app_controller.dart';
 import 'package:career_sphere/utils/responsive.dart';
 import 'package:flutter/material.dart';
